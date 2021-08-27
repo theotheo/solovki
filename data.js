@@ -70,5 +70,14 @@ const LOCATIONS = [{
             lng: 35.709431
         },
         filename: 'matros-milicia'
+    },
+    {
+        name: 'Мыс сомнений',
+        description: '',
+        location: {
+            lat: 65.022256,
+            lng: 35.686471
+        },
+        filename: 'mys-comneniy'
     }
 ]

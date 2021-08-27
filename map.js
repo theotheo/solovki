@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWlpaSIsImEiOiJjajgydmMwZHMwZnJlMndtaWVyNnc0NWFjIn0.YHOCwPqB6HIgjaE8dJGxsQ'
 
 let lastPos = { latitude: 0, longitude: 0 };
-const NEAR = 0.02
+const NEAR = 0.05
 let map
 
 function renderMap() {
