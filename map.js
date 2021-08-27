@@ -18,17 +18,20 @@ function renderMap() {
         })
 
         // Add geolocate control to the map.
-        map.addControl(
-            new mapboxgl.GeolocateControl({
-                positionOptions: {
-                    enableHighAccuracy: true
-                },
-                // When active the map will receive updates to the device's location as it changes.
-                trackUserLocation: true,
-                // Draw an arrow next to the location dot to indicate which direction the device is heading.
-                showUserHeading: true
-            })
-        );
+        let geolocate = new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true,
+            positionOptions: GEOLOCATION_OPTIONS
+        })
+        map.addControl(geolocate);
+        map.on('load', function() {
+            geolocate.trigger(); // Automatically activates geolocation
+        });
 
         console.log(lastPos)
         console.log(map)
@@ -155,6 +158,12 @@ function renderMarkers() {
     }
 }
 
+const GEOLOCATION_OPTIONS = {
+    enableHighAccuracy: false,
+    timeout: 5000,
+    maximumAge: 5000
+}
+
 window.onload = () => {
     let state = 0,
         lastTime = 0;
@@ -186,11 +195,7 @@ window.onload = () => {
 
         }, (err) => {
 
-        }, {
-            enableHighAccuracy: false,
-            timeout: 5000,
-            maximumAge: 0
-        })
+        }, GEOLOCATION_OPTIONS)
 
     });
 
