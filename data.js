@@ -12,32 +12,29 @@ const LOCATIONS = [{
             lat: 65.020661,
             lng: 35.707512
         },
-        // filename: 'nikita-test-x264',
+        filename: 'nikita',
         // filename: 'matros1-m264',
         rotation: '-90 0 0',
     },
-    {
-        name: 'перед Флоренского 8',
-        location: {
-            lat: 65.020869,
-            lng: 35.707611
-        },
-        // filename: 'nikita-test-x264',
-        // filename: 'matros1-m264',
-        // filename: 'lednik',
-        rotation: '180 0 0',
-    },
+    // {
+    //     name: 'перед Флоренского 8',
+    //     location: {
+    //         lat: 65.020869,
+    //         lng: 35.707611
+    //     },
+    //     // filename: 'nikita-test-x264',
+    //     // filename: 'matros1-m264',
+    //     // filename: 'lednik',
+    //     rotation: '180 0 0',
+    // },
     {
         name: 'Белая башня',
         location: {
-            lat: 65.023168,
-            lng: 35.710461,
+            lat: 65.030960,
+            lng: 35.691882
         },
-        // filename: 'nikita',
-
         filename: 'lednik',
         rotation: '0 0 0',
-        // vid: "vid"
     },
     {
         name: 'Дырка в сухом доке',
