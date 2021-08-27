@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Карты, маркеры, острова</title>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet" />
+
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script> -->
+    <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script>
+
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+    <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+    <template id="hud-template" type="text/x-handlebars-template">
+        lat {{latitude}}, lng {{longitude}}
+    </template>
+
+    <template id="assets-template" type="text/x-handlebars-template">
+        {{#each places}}    
+            <video id="{{filename}}" src="assets/videos/{{filename}}.mp4" preload="metadata" response-type="arraybuffer" loop crossorigin webkit-playsinline autoplay muted="false" playsinline></video>
+        {{/each}}
+    </template>
+
+    <template id="video-template" type="text/x-handlebars-template">
+        <a-video src="#{{filename}}" material="shader: chromakey; color: 0.0 0.9 0.2" scale="1 1 1" position="0 0.0 0" rotation="{{rotation}}" class="clickable" gesture-handler></a-video>
+    </template>
+
+    <template id="places-template">
+        {{#each places}}           
+        <a-text value={{dist}} scale="25 25 25" gps-projected-entity-place="latitude: {{location.lat}}; longitude: {{location.lng}}" look-at="[gps-projected-camera]" position="0 10 0"></a-text>
+
+            <a-image  click-handler gps-projected-entity-place="latitude: {{location.lat}}; longitude: {{location.lng}}" 
+                name={{name}} src="assets/anchor-map.png" scale="20, 20" animation="property: rotation; to: 0 0 360; loop: true; dur: 10000">
+            </a-image>
+        {{/each}}
+      </template>
+
+</head>
+
+<body>
+    <div id="map"><button id="fullScreenButton" onclick="toggle()">Полная карта</button></div>
+    <div id="info" class="centered info"></div>
+
+
+
+    <a-scene vr-mode-ui="enabled: false" loading-screen="enabled: false;" arjs='sourceType: webcam; debugUIEnabled: true;' id="scene" embedded gesture-detector>
+        <!-- <a-assets id="assets">
+            <video id="vid1" src="assets/matros1-m264.mp4" preload="metadata" response-type="arraybuffer" loop crossorigin webkit-playsinline autoplay muted="false" playsinline></video>
+
+        <video id="vid" src="assets/nikita-test-x264.mp4" preload="metadata" response-type="arraybuffer" loop crossorigin webkit-playsinline autoplay muted="false" playsinline></video>
+        </a-assets> -->
+
+        <a-assets id="assets">
+            <!-- <video id="vid1" src="assets/matros1-m264.mp4" preload="metadata" response-type="arraybuffer" loop crossorigin webkit-playsinline autoplay muted="false" playsinline></video>
+
+            <video id="vid" src="assets/nikita-test-x264.mp4" preload="auto" response-type="arraybuffer" loop crossorigin webkit-playsinline autoplay muted="false" playsinline></video> -->
+        </a-assets>
+
+        <a-marker id="marker" type="pattern" preset="custom" url="assets/wind-rose-4.patt" videohandler smooth="true" smoothCount="10" smoothTolerance="0.01" smoothThreshold="5" raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
+            <!-- <a-entity material="shader: chromakey; src: #vid; color: 0.0 0.9 0.2" rotation="-90 0 0" geometry="primitive: plane"></a-entity> -->
+
+            <!-- <a-video src="#vid1" material="shader: chromakey; color: 0.0 0.9 0.2" scale="1 1 1" position="0 0.0 0" rotation="-90 0 0" class="clickable" gesture-handler></a-video> -->
+        </a-marker>
+
+        <a-entity id="camera" camera></a-entity>
+    </a-scene>
+    <div id="hud"></div>
+
+
+    <script src="./data.js"></script>
+    <script src="./ar-helpers.js"></script>
+    <script src="./map.js"></script>
+
+</body>
+
+</html>
