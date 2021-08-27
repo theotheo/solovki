@@ -40,7 +40,6 @@ function renderMap() {
         // addARPoints()
     }
 
-    var mapState = ''
 }
 
 function findActivated() {
@@ -61,7 +60,6 @@ function findActivated() {
     if (!nearest.isFar) {
         console.log('active!')
         places[0] = {...nearest, isActivated: true }
-            // places[0]['isActived'] = true
     }
     console.log(places)
     return places
@@ -165,10 +163,6 @@ const GEOLOCATION_OPTIONS = {
 }
 
 window.onload = () => {
-    let state = 0,
-        lastTime = 0;
-    // places = staticLoadPlaces();
-    // renderPlaces(places);
 
     navigator.geolocation.getCurrentPosition((pos) => {
         // alert(pos.coords.longitude)
@@ -181,9 +175,6 @@ window.onload = () => {
         renderAssets()
 
         id = navigator.geolocation.watchPosition((pos) => {
-            // if (pos.coords) {
-            // alert('!!!!!' + JSON.stringify(pos.coords.latitude))
-            // const curTime = new Date().getTime();
             console.log(pos.coords)
             lastPos = { longitude: pos.coords.longitude, latitude: pos.coords.latitude }
                 // renderMarkers()
@@ -304,12 +295,11 @@ function renderPlaces(places) {
 
 
 function renderAssets() {
+    var el = document.getElementById('assets')
     var template = document.getElementById('assets-template').innerHTML
     var render = Handlebars.compile(template)
-        // alert(JSON.stringify(places))
     var html = render({ places: LOCATIONS })
 
-    var el = document.getElementById('assets')
     el.innerHTML = html
 }
 
@@ -326,8 +316,6 @@ function renderDIST(pos, dists) {
     var template = document.getElementById('hud-template').innerHTML;
     var render = Handlebars.compile(template);
     let l = render({...pos })
-        // alert(l)
-
     el.innerHTML = l + '<div> dists: ' + dists.join(', ') + '</div>'
 }
 
