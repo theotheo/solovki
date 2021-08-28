@@ -28,10 +28,10 @@ const LOCATIONS = [{
     //     rotation: '180 0 0',
     // },
     {
-        name: 'Белая башня',
+        name: 'Илья про ледник',
         location: {
-            lat: 65.030960,
-            lng: 35.691882
+            lat: 65.023901,
+            lng: 35.702318
         },
         filename: 'lednik',
         rotation: '0 0 0',
@@ -79,5 +79,68 @@ const LOCATIONS = [{
             lng: 35.686471
         },
         filename: 'mys-comneniy'
+    },
+    {
+        name: 'Матрос первый приезд',
+        description: '',
+        location: {
+            lat: 65.031072,
+            lng: 35.692000
+        },
+        filename: 'matros-1-priezd'
+    },
+    // {
+    //     name: '',
+    //     description: '',
+    //     location: {
+    //         lat: lng:
+    //     },
+    //     filename: 'devochka-anya-dom-dva-direktora'
+    // },
+    {
+        name: 'Маша "Место чудес"',
+        description: '',
+        location: {
+            lat: 65.030447,
+            lng: 35.690196
+        },
+        filename: 'masha-mesto-chudes-muj'
+    },
+    {
+        name: 'Маша про лодку',
+        description: '',
+        location: {
+            lat: 65.024092,
+            lng: 35.702753
+        },
+        filename: 'masha-chudo-s-lodkoy'
+    },
+    {
+        name: 'Настя про дуб',
+        description: '',
+        location: {
+            lat: 65.031153,
+            lng: 35.692967
+        },
+        filename: 'nastya-dub'
+    },
+    {
+        name: 'Настя про починку крышу',
+        description: '',
+        location: {
+            lat: 65.027648,
+            lng: 35.721174
+        },
+        filename: 'nastya-sarai-chinyat-krishi'
+    },
+    {
+        name: 'Аня два директора',
+        description: '',
+        location: {
+            lat: 65.022017,
+            lng: 35.707260
+        },
+        filename: 'devochka-anya-dom-dva-direktora'
     }
+
 ]
