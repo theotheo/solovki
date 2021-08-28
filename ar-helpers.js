@@ -16,7 +16,10 @@ AFRAME.registerComponent('videohandler', {
                 // el.play()
             let assetEl = document.querySelector(`${id}`)
             console.log(assetEl)
+            assetEl.muted = false
+                // assetEl.removeAttribute('muted')
             assetEl.play();
+
         }.bind(this));
 
         marker.addEventListener('markerLost', function() {
@@ -31,8 +34,20 @@ AFRAME.registerComponent('videohandler', {
             let assetEl = document.querySelector(`${id}`)
             console.log(assetEl)
             assetEl.pause();
+            assetEl.setAttribute('muted', 'true')
+
+
         }.bind(this));
     },
+    remove: function() {
+        // var data = this.data;
+        var el = this.el;
+        console.log(el)
+            // Remove event listener.
+        if (data.event) {
+            el.removeEventListener(data.event, this.eventHandlerFn);
+        }
+    }
 });
 
 AFRAME.registerComponent('clickhandler', {
